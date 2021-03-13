@@ -22,6 +22,7 @@ class _ControlPageState extends State<ControlPage> {
   void validar() {
     if (_vertical > 2) {
       texto = "Esta en el limite";
+      _showMyDialog(context);
       _vertical = 0;
       _horizontal = 0;
     }
@@ -29,16 +30,19 @@ class _ControlPageState extends State<ControlPage> {
       _vertical = 0;
       _horizontal = 0;
       texto = "Esta en el limite";
+      _showMyDialog(context);
     }
     if (_horizontal > 2) {
       texto = "Esta en el limite";
       _vertical = 0;
       _horizontal = 0;
+      _showMyDialog(context);
     }
     if (_horizontal < 0) {
       _vertical = 0;
       _horizontal = 0;
       texto = "Esta en el limite";
+      _showMyDialog(context);
     }
   }
 
@@ -154,6 +158,29 @@ class _ControlPageState extends State<ControlPage> {
     }
   }
 
+  Future _showMyDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (_) => _buildAlertDialog(),
+    );
+  }
+
+//ALERTA
+  Widget _buildAlertDialog() {
+    return AlertDialog(
+      title: Text('Notificaciones'),
+      content: Text("Se ha salido del limite"),
+      actions: [
+        FlatButton(
+            child: Text("Aceptar"),
+            textColor: Colors.blue,
+            onPressed: () {
+              Navigator.of(context).pop();
+            })
+      ],
+    );
+  }
+
   void validarGirar() {
     if (_girar > 4) {
       setState(() {
@@ -249,7 +276,14 @@ class _ControlPageState extends State<ControlPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 child: FlatButton(
-                    child: Text("A"),
+                    child: new Text(
+                      'A',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontFamily: 'Karla'),
+                    ),
                     onPressed: () {
                       setState(() {
                         _vertical++;
@@ -268,7 +302,14 @@ class _ControlPageState extends State<ControlPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 child: FlatButton(
-                    child: Text("I"),
+                    child: new Text(
+                      'I',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontFamily: 'Karla'),
+                    ),
                     onPressed: () {
                       setState(() {
                         _horizontal--;
@@ -287,7 +328,14 @@ class _ControlPageState extends State<ControlPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 child: FlatButton(
-                    child: Text("D"),
+                    child: new Text(
+                      'D',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontFamily: 'Karla'),
+                    ),
                     onPressed: () {
                       setState(() {
                         _horizontal++;
@@ -301,11 +349,17 @@ class _ControlPageState extends State<ControlPage> {
                 padding: const EdgeInsets.all(8),
                 //No lleva
               ),
-
               Container(
                 padding: const EdgeInsets.all(8),
                 child: FlatButton(
-                    child: Text("Ab"),
+                    child: new Text(
+                      'Ab',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontFamily: 'Karla'),
+                    ),
                     onPressed: () {
                       setState(() {
                         _vertical--;
